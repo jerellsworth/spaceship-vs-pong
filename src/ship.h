@@ -5,7 +5,10 @@
 
 struct Ship_s {
     Vector2 center;
+    Vector2 vel;
+    Vector2 accel;
     Vector2 points[3];
+    Vector2 facing;
     float angle;
 };
 
@@ -14,5 +17,6 @@ void Ship_del(Ship *s);
 void Ship_turn(Ship *s, float rad);
 void Ship_thrust(Ship *s, float a);
 void Ship_draw(Ship *s);
+void Ship_update(Ship *s);
 
 #endif

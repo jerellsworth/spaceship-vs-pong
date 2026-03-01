@@ -57,10 +57,17 @@ void UpdateGameplayScreen(void)
     // Press enter or tap to change to ENDING screen
     if (IsKeyDown(KEY_A))
     {
-        Ship_turn(ship, 2.0f * PI / 64.0f);
-    } else if (IsKeyDown(KEY_D)) {
         Ship_turn(ship, -2.0f * PI / 64.0f);
+    } else if (IsKeyDown(KEY_D)) {
+        Ship_turn(ship, 2.0f * PI / 64.0f);
     }
+    if (IsKeyDown(KEY_W)) {
+        Ship_thrust(ship, 0.1f);
+    } else {
+        Ship_thrust(ship, 0.0f);
+    }
+
+    Ship_update(ship);
 }
 
 // Gameplay Screen Draw logic
