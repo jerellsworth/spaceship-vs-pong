@@ -55,13 +55,12 @@ void UpdateGameplayScreen(void)
     // TODO: Update GAMEPLAY screen variables here!
 
     // Press enter or tap to change to ENDING screen
-    /*
-    if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+    if (IsKeyDown(KEY_A))
     {
-        finishScreen = 1;
-        PlaySound(fxCoin);
+        Ship_turn(ship, 2.0f * PI / 64.0f);
+    } else if (IsKeyDown(KEY_D)) {
+        Ship_turn(ship, -2.0f * PI / 64.0f);
     }
-    */
 }
 
 // Gameplay Screen Draw logic
