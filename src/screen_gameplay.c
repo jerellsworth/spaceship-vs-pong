@@ -41,7 +41,7 @@ Ship *ship = NULL;
 // Gameplay Screen Initialization logic
 void InitGameplayScreen(void)
 {
-    Vector2 center = {GetScreenWidth() / 2, GetScreenHeight() / 2};
+    Vector2 center = {(PLAYFIELD_MIN_X + PLAYFIELD_MAX_X) / 2, (PLAYFIELD_MIN_Y + PLAYFIELD_MAX_Y) / 2};
     framesCounter = 0;
     finishScreen = 0;
     Bullet_all_init();

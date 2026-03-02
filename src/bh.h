@@ -11,6 +11,8 @@
 typedef struct Bullet_s Bullet;
 typedef struct Ship_s Ship;
 
+#include "paddle.h"
+#include "playfield.h"
 #include "ship.h"
 #include "bullet.h"
 

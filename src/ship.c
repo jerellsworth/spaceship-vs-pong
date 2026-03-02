@@ -35,9 +35,25 @@ void Ship_thrust(Ship *s, float a) {
 
 void Ship_update(Ship *s) {
     s->vel = Vector2Add(s->vel, s->accel);
-    s->center = Vector2Add(s->center, s->vel);
+    Vector2 next_center = Vector2Add(s->center, s->vel);
+    if (next_center.x <= PLAYFIELD_MIN_X) {
+        next_center.x = PLAYFIELD_MIN_X;
+        s->vel.x = -s->vel.x;
+    } else if (next_center.x >= PLAYFIELD_MAX_X) {
+        next_center.x = PLAYFIELD_MAX_X;
+        s->vel.x = -s->vel.x;
+    }
+    if (next_center.y <= PLAYFIELD_MIN_Y) {
+        next_center.y = PLAYFIELD_MIN_Y;
+        s->vel.y = -s->vel.y;
+    } else if (next_center.y >= PLAYFIELD_MAX_Y) {
+        next_center.y = PLAYFIELD_MAX_Y;
+        s->vel.y = -s->vel.y;
+    }
+    Vector2 dpos = Vector2Subtract(next_center, s->center);
+    s->center = next_center;
     for (uint32_t i = 0; i < 3; ++i) {
-        s->points[i] = Vector2Add(s->points[i], s->vel);
+        s->points[i] = Vector2Add(s->points[i], dpos);
     }
 }
 

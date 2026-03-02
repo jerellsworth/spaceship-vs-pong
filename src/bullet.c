@@ -21,7 +21,21 @@ void Bullet_all_update(void) {
         Bullet *b = BULLET_ALL[i];
         if (!b) continue;
         b->pos = Vector2Add(b->pos, b->vel);
-        // TODO delete them eventually
+        if (b->pos.x <= PLAYFIELD_MIN_X) {
+            Bullet_del(b);
+            continue;
+        }
+        if (b->pos.x >= PLAYFIELD_MAX_X) {
+            Bullet_del(b);
+            continue;
+        }
+        if (b->pos.y <= PLAYFIELD_MIN_Y) {
+            b->pos.y = PLAYFIELD_MIN_Y;
+            b->vel.y = -b->vel.y;
+        } else if (b->pos.y >= PLAYFIELD_MAX_Y) {
+            b->pos.y = PLAYFIELD_MAX_Y;
+            b->vel.y = -b->vel.y;
+        }
     }
 }
 

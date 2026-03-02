@@ -4,7 +4,7 @@
 #include "bh.h"
 
 #define BULLET_MAX_BULLETS 40
-#define BULLET_SPEED 2.0f
+#define BULLET_SPEED 4.0f
 
 extern Bullet *BULLET_ALL[];
 
