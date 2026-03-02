@@ -14,10 +14,12 @@ typedef enum PaddleSide_e PaddleSide;
 typedef struct Bullet_s Bullet;
 typedef struct Ship_s Ship;
 typedef struct Paddle_s Paddle;
+typedef struct FireParticle_s FireParticle;
 
 #include "paddle.h"
 #include "playfield.h"
 #include "ship.h"
 #include "bullet.h"
+#include "fire_particle.h"
 
 #endif

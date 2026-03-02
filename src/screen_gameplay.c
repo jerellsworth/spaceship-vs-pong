@@ -47,6 +47,7 @@ void InitGameplayScreen(void)
     finishScreen = 0;
     Bullet_all_init();
     Paddle_all_init();
+    FireParticle_all_init();
     ship = Ship_init(
         center
     );
@@ -85,6 +86,7 @@ void UpdateGameplayScreen(void)
     }
     Paddle_all_update();
     Bullet_all_update();
+    FireParticle_all_update();
     if (endFrame >= 0 && framesCounter >= endFrame) {
         finishScreen = 1;
     }
@@ -96,12 +98,15 @@ void DrawGameplayScreen(void)
     Ship_draw(ship);
     Paddle_all_draw();
     Bullet_all_draw();
+    FireParticle_all_draw();
 }
 
 // Gameplay Screen Unload logic
 void UnloadGameplayScreen(void)
 {
     Bullet_all_cleanup();
+    FireParticle_all_cleanup();
+    Paddle_all_cleanup();
     Ship_del(ship);
     ship = NULL;
 }
