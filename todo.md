@@ -1,4 +1,5 @@
 * paddles
+* bullets can hit ship
 * Particle effects:
     * fire for ship thruster
     * draw a line when ship bounces
