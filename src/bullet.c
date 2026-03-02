@@ -20,6 +20,7 @@ void Bullet_all_update(void) {
     for (uint32_t i = 0; i < BULLET_MAX_BULLETS; ++i) {
         Bullet *b = BULLET_ALL[i];
         if (!b) continue;
+        ++b->time_alive;
         b->pos = Vector2Add(b->pos, b->vel);
         if (b->pos.x <= PLAYFIELD_MIN_X) {
             Paddle *p = PADDLE_ALL[PADDLE_SIDE_LEFT];

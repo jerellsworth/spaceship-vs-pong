@@ -31,6 +31,7 @@
 // Module Variables Definition (local)
 //----------------------------------------------------------------------------------
 static int framesCounter = 0;
+static int endFrame = -1;
 static int finishScreen = 0;
 Ship *ship = NULL;
 
@@ -57,24 +58,36 @@ void UpdateGameplayScreen(void)
     // TODO: Update GAMEPLAY screen variables here!
 
     // Press enter or tap to change to ENDING screen
-    if (IsKeyDown(KEY_A))
-    {
-        Ship_turn(ship, -2.0f * PI / 64.0f);
-    } else if (IsKeyDown(KEY_D)) {
-        Ship_turn(ship, 2.0f * PI / 64.0f);
-    }
-    if (IsKeyDown(KEY_W)) {
-        Ship_thrust(ship, 0.1f);
-    } else {
-        Ship_thrust(ship, 0.0f);
-    }
-    if (IsKeyPressed(KEY_SPACE)) {
-        Ship_fire(ship);
+    ++framesCounter;
+    if (!ship->exploded) {
+        if (IsKeyDown(KEY_A))
+        {
+            Ship_turn(ship, -2.0f * PI / 64.0f);
+        } else if (IsKeyDown(KEY_D)) {
+            Ship_turn(ship, 2.0f * PI / 64.0f);
+        }
+        if (IsKeyDown(KEY_W)) {
+            Ship_thrust(ship, 0.1f);
+        } else {
+            Ship_thrust(ship, 0.0f);
+        }
+        if (IsKeyPressed(KEY_SPACE)) {
+            Ship_fire(ship);
+        }
+        if (IsKeyPressed(KEY_Q)) {
+            ship->exploded = 1;
+        }
     }
 
     Ship_update(ship);
+    if (ship->exploded && endFrame < 0) {
+        endFrame = framesCounter + 120;
+    }
     Paddle_all_update();
     Bullet_all_update();
+    if (endFrame >= 0 && framesCounter >= endFrame) {
+        finishScreen = 1;
+    }
 }
 
 // Gameplay Screen Draw logic

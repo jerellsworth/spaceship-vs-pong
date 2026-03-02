@@ -12,6 +12,7 @@ struct Bullet_s {
     Vector2 pos;
     Vector2 vel;
     uint32_t bullet_idx;
+    uint32_t time_alive;
 };
 
 void Bullet_all_init(void);

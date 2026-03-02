@@ -34,6 +34,8 @@ void Ship_thrust(Ship *s, float a) {
 }
 
 void Ship_update(Ship *s) {
+    if (!s) return;
+    if (s->exploded) return;
     s->vel = Vector2Add(s->vel, s->accel);
     float magnitude = Vector2Length(s->vel);
     if (magnitude > SHIP_TERMINAL_VELOCITY) {
@@ -56,12 +58,29 @@ void Ship_update(Ship *s) {
     }
     Vector2 dpos = Vector2Subtract(next_center, s->center);
     s->center = next_center;
+
     for (uint32_t i = 0; i < 3; ++i) {
         s->points[i] = Vector2Add(s->points[i], dpos);
     }
+
+    for (uint32_t i = 0; i < BULLET_MAX_BULLETS; ++i) {
+        Bullet *b = BULLET_ALL[i];
+        if (!b) continue;
+        if (b->time_alive < 15) continue;
+        if (fabsf(b->pos.x - s->center.x) > SHIP_RADIUS) continue;
+        if (fabsf(b->pos.y - s->center.y) > SHIP_RADIUS) continue;
+        float dist = Vector2Distance(s->center, b->pos);
+        if (dist <= SHIP_HIT_RADIUS) {
+            s->exploded = 1;        
+            return;
+        }
+    }
+
 }
 
 void Ship_draw(Ship *s) {
+    if (!s) return;
+    if (s->exploded) return;
     DrawTriangle(
         s->points[2],
         s->points[1],

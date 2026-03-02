@@ -4,6 +4,7 @@
 #include "bh.h"
 
 #define SHIP_RADIUS 16.0f
+#define SHIP_HIT_RADIUS 8.0f
 #define SHIP_TERMINAL_VELOCITY 8.0f
 
 struct Ship_s {
@@ -13,6 +14,7 @@ struct Ship_s {
     Vector2 points[3];
     Vector2 facing;
     float angle;
+    bool exploded;
 };
 
 Ship *Ship_init(Vector2 center);
