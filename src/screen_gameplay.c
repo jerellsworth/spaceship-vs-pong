@@ -45,6 +45,7 @@ void InitGameplayScreen(void)
     framesCounter = 0;
     finishScreen = 0;
     Bullet_all_init();
+    Paddle_all_init();
     ship = Ship_init(
         center
     );
@@ -72,6 +73,7 @@ void UpdateGameplayScreen(void)
     }
 
     Ship_update(ship);
+    Paddle_all_update();
     Bullet_all_update();
 }
 
@@ -79,6 +81,7 @@ void UpdateGameplayScreen(void)
 void DrawGameplayScreen(void)
 {
     Ship_draw(ship);
+    Paddle_all_draw();
     Bullet_all_draw();
 }
 
