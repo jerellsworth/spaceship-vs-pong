@@ -95,10 +95,10 @@ void UpdateGameplayScreen(void)
 // Gameplay Screen Draw logic
 void DrawGameplayScreen(void)
 {
-    Ship_draw(ship);
     Paddle_all_draw();
     Bullet_all_draw();
     FireParticle_all_draw();
+    Ship_draw(ship);
 }
 
 // Gameplay Screen Unload logic
