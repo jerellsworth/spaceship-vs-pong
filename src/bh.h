@@ -1,11 +1,12 @@
 #ifndef BH_H
 #define BH_H
 
-#include <stddef.h>
-#include <stdlib.h>
-#include <stdint.h>
 #include <float.h>
 #include <math.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "raylib.h"
 #include "raymath.h"

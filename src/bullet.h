@@ -17,7 +17,7 @@ struct Bullet_s {
 
 void Bullet_all_init(void);
 void Bullet_all_cleanup(void);
-void Bullet_all_update(void);
+uint32_t Bullet_all_update(void);
 void Bullet_all_draw(void);
 Bullet *Bullet_init(Vector2 pos, Vector2 vel);
 void Bullet_del(Bullet *b);

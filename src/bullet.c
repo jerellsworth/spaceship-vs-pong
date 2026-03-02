@@ -16,7 +16,8 @@ void Bullet_all_cleanup(void) {
     }
 }
 
-void Bullet_all_update(void) {
+uint32_t Bullet_all_update(void) {
+    uint32_t score_diff = 0;
     for (uint32_t i = 0; i < BULLET_MAX_BULLETS; ++i) {
         Bullet *b = BULLET_ALL[i];
         if (!b) continue;
@@ -33,6 +34,7 @@ void Bullet_all_update(void) {
                 b->vel.x = -b->vel.x;
             } else {
                 Bullet_del(b);
+                ++score_diff;
                 continue;
             }
         }
@@ -47,6 +49,7 @@ void Bullet_all_update(void) {
                 b->vel.x = -b->vel.x;
             } else {
                 Bullet_del(b);
+                ++score_diff;
                 continue;
             }
         }
@@ -58,6 +61,7 @@ void Bullet_all_update(void) {
             b->vel.y = -b->vel.y;
         }
     }
+    return score_diff;
 }
 
 void Bullet_all_draw(void) {

@@ -33,6 +33,7 @@
 static int framesCounter = 0;
 static int endFrame = -1;
 static int finishScreen = 0;
+static uint32_t score = 0;
 Ship *ship = NULL;
 
 //----------------------------------------------------------------------------------
@@ -45,6 +46,7 @@ void InitGameplayScreen(void)
     Vector2 center = {(PLAYFIELD_MIN_X + PLAYFIELD_MAX_X) / 2, (PLAYFIELD_MIN_Y + PLAYFIELD_MAX_Y) / 2};
     framesCounter = 0;
     finishScreen = 0;
+    score = 0;
     Bullet_all_init();
     Paddle_all_init();
     FireParticle_all_init();
@@ -85,7 +87,10 @@ void UpdateGameplayScreen(void)
         endFrame = framesCounter + 120;
     }
     Paddle_all_update();
-    Bullet_all_update();
+    uint32_t score_diff = Bullet_all_update();
+    if (!ship->exploded) {
+        score += score_diff;
+    }
     FireParticle_all_update();
     if (endFrame >= 0 && framesCounter >= endFrame) {
         finishScreen = 1;
@@ -95,6 +100,7 @@ void UpdateGameplayScreen(void)
 // Gameplay Screen Draw logic
 void DrawGameplayScreen(void)
 {
+    Playfield_draw(score);
     Paddle_all_draw();
     Bullet_all_draw();
     FireParticle_all_draw();

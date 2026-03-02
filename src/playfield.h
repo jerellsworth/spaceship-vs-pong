@@ -1,10 +1,15 @@
 #ifndef PLAYFIELD_H
 #define PLAYFIELD_H
 
+#include "bh.h"
+
+#define PLAYFIELD_SCORE_MARGIN 64.0f
 #define PLAYFIELD_PADDLE_MARGIN 16.0f
 #define PLAYFIELD_MIN_X (PADDLE_WIDTH + PLAYFIELD_PADDLE_MARGIN)
 #define PLAYFIELD_MAX_X (GetScreenWidth() - (PADDLE_WIDTH + PLAYFIELD_PADDLE_MARGIN))
-#define PLAYFIELD_MIN_Y 0.0f
+#define PLAYFIELD_MIN_Y (PLAYFIELD_SCORE_MARGIN)
 #define PLAYFIELD_MAX_Y (GetScreenHeight())
+
+void Playfield_draw(uint32_t score);
 
 #endif
