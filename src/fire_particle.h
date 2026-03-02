@@ -3,8 +3,8 @@
 
 #include "bh.h"
 
-#define FIRE_PARTICLE_MAX_PARTICLES 100
-#define FIRE_PARTICLE_TTL 60
+#define FIRE_PARTICLE_MAX_PARTICLES 1024
+#define FIRE_PARTICLE_TTL 16
 
 struct FireParticle_s {
     Vector2 pos;

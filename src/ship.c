@@ -31,7 +31,14 @@ void Ship_thrust(Ship *s, float a) {
         return;
     }
     s->accel = _Ship_facing_vector(s, a);
-    FireParticle_init(s->points[2], (Vector2){0.0f, 0.0f});
+    Vector2 dpos = Vector2Subtract(s->points[2], s->points[1]);
+    dpos.x /= 16.0f;
+    dpos.y /= 16.0f;
+    Vector2 pos = s->points[1];
+    for (uint32_t i = 0; i < 17; ++i) {
+        FireParticle_init(pos, (Vector2){0.0f, 0.0f});
+        pos = Vector2Add(pos, dpos);
+    }
 }
 
 void Ship_update(Ship *s) {
