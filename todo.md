@@ -1,4 +1,3 @@
-* paddles
 * terminal velocity for ship
 * bullets can hit ship
 * Particle effects:

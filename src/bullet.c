@@ -22,12 +22,32 @@ void Bullet_all_update(void) {
         if (!b) continue;
         b->pos = Vector2Add(b->pos, b->vel);
         if (b->pos.x <= PLAYFIELD_MIN_X) {
-            Bullet_del(b);
-            continue;
+            Paddle *p = PADDLE_ALL[PADDLE_SIDE_LEFT];
+            if (
+                p
+                && b->pos.y >= p->ul_corner.y
+                && b->pos.y <= p->ul_corner.y + PADDLE_HEIGHT
+            ) {
+                b->pos.x = PLAYFIELD_MIN_X;
+                b->vel.x = -b->vel.x;
+            } else {
+                Bullet_del(b);
+                continue;
+            }
         }
         if (b->pos.x >= PLAYFIELD_MAX_X) {
-            Bullet_del(b);
-            continue;
+            Paddle *p = PADDLE_ALL[PADDLE_SIDE_RIGHT];
+            if (
+                p
+                && b->pos.y >= p->ul_corner.y
+                && b->pos.y <= p->ul_corner.y + PADDLE_HEIGHT
+            ) {
+                b->pos.x = PLAYFIELD_MAX_X;
+                b->vel.x = -b->vel.x;
+            } else {
+                Bullet_del(b);
+                continue;
+            }
         }
         if (b->pos.y <= PLAYFIELD_MIN_Y) {
             b->pos.y = PLAYFIELD_MIN_Y;
