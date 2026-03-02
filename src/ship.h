@@ -4,6 +4,7 @@
 #include "bh.h"
 
 #define SHIP_RADIUS 16.0f
+#define SHIP_TERMINAL_VELOCITY 8.0f
 
 struct Ship_s {
     Vector2 center;

@@ -1,4 +1,3 @@
-* terminal velocity for ship
 * bullets can hit ship
 * Particle effects:
     * fire for ship thruster

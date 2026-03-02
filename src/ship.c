@@ -35,6 +35,10 @@ void Ship_thrust(Ship *s, float a) {
 
 void Ship_update(Ship *s) {
     s->vel = Vector2Add(s->vel, s->accel);
+    float magnitude = Vector2Length(s->vel);
+    if (magnitude > SHIP_TERMINAL_VELOCITY) {
+        s->vel = Vector2Scale(Vector2Normalize(s->vel), SHIP_TERMINAL_VELOCITY);
+    }
     Vector2 next_center = Vector2Add(s->center, s->vel);
     if (next_center.x <= PLAYFIELD_MIN_X) {
         next_center.x = PLAYFIELD_MIN_X;
