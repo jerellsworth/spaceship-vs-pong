@@ -32,6 +32,9 @@ Paddle *Paddle_init(PaddleSide side) {
     p->side = side;
     float x = side == PADDLE_SIDE_LEFT ? PLAYFIELD_PADDLE_MARGIN : PLAYFIELD_MAX_X;
     float y = ((PLAYFIELD_MIN_Y + PLAYFIELD_MAX_Y) / 2.0f) - (PADDLE_HEIGHT / 2.0f);
+    p->ul_corner = (Vector2){x, y};
+    PADDLE_ALL[side] = p;
+    return p;
 }
 
 void Paddle_del(Paddle *p) {
