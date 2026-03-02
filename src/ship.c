@@ -3,11 +3,11 @@
 Ship *Ship_init(Vector2 center) {
     Ship *s = calloc(1, sizeof(Ship));
     s->center = center;
-    s->points[0] = Vector2Add(center, (Vector2){8.0f, 0.0f});
+    s->points[0] = Vector2Add(center, (Vector2){SHIP_RADIUS, 0.0f});
     float angle = (2.0f * PI) * (5.0f / 12.0f);
-    s->points[1] = Vector2Add(center, (Vector2){cosf(angle) * 8.0f, sinf(angle) * 8.0f});
+    s->points[1] = Vector2Add(center, (Vector2){cosf(angle) * SHIP_RADIUS, sinf(angle) * SHIP_RADIUS});
     angle = (2.0f * PI) * (7.0f / 12.0f);
-    s->points[2] = Vector2Add(center, (Vector2){cosf(angle) * 8.0f, sinf(angle) * 8.0f});
+    s->points[2] = Vector2Add(center, (Vector2){cosf(angle) * SHIP_RADIUS, sinf(angle) * SHIP_RADIUS});
     return s;
 }
 
@@ -16,9 +16,13 @@ void Ship_del(Ship *s) {
 }
 
 void Ship_turn(Ship *s, float rad) {
-    for (int i = 0; i < 3; ++i) {
+    for (uint32_t i = 0; i < 3; ++i) {
         s->points[i] = Vector2Add(s->center, Vector2Rotate(Vector2Subtract(s->points[i], s->center), rad));
     }
+}
+
+Vector2 _Ship_facing_vector(Ship *s, float scale) {
+    return Vector2Scale(Vector2Normalize(Vector2Subtract(s->points[0], s->center)), scale);
 }
 
 void Ship_thrust(Ship *s, float a) {
@@ -26,13 +30,13 @@ void Ship_thrust(Ship *s, float a) {
         s->accel = (Vector2){0.0f, 0.0f};
         return;
     }
-    s->accel = Vector2Scale(Vector2Normalize(Vector2Subtract(s->points[0], s->center)), a);
+    s->accel = _Ship_facing_vector(s, a);
 }
 
 void Ship_update(Ship *s) {
     s->vel = Vector2Add(s->vel, s->accel);
     s->center = Vector2Add(s->center, s->vel);
-    for (int i = 0; i < 3; ++i) {
+    for (uint32_t i = 0; i < 3; ++i) {
         s->points[i] = Vector2Add(s->points[i], s->vel);
     }
 }
@@ -44,4 +48,10 @@ void Ship_draw(Ship *s) {
         s->points[0],
         BLACK
     );
+}
+
+void Ship_fire(Ship *s) {
+    Vector2 pos = s->points[0];
+    Vector2 vel = _Ship_facing_vector(s, BULLET_SPEED);
+    Bullet_init(pos, vel);
 }

@@ -44,6 +44,7 @@ void InitGameplayScreen(void)
     Vector2 center = {GetScreenWidth() / 2, GetScreenHeight() / 2};
     framesCounter = 0;
     finishScreen = 0;
+    Bullet_all_init();
     ship = Ship_init(
         center
     );
@@ -66,19 +67,25 @@ void UpdateGameplayScreen(void)
     } else {
         Ship_thrust(ship, 0.0f);
     }
+    if (IsKeyPressed(KEY_SPACE)) {
+        Ship_fire(ship);
+    }
 
     Ship_update(ship);
+    Bullet_all_update();
 }
 
 // Gameplay Screen Draw logic
 void DrawGameplayScreen(void)
 {
     Ship_draw(ship);
+    Bullet_all_draw();
 }
 
 // Gameplay Screen Unload logic
 void UnloadGameplayScreen(void)
 {
+    Bullet_all_cleanup();
     Ship_del(ship);
     ship = NULL;
 }

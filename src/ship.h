@@ -3,6 +3,8 @@
 
 #include "bh.h"
 
+#define SHIP_RADIUS 16.0f
+
 struct Ship_s {
     Vector2 center;
     Vector2 vel;
@@ -18,5 +20,6 @@ void Ship_turn(Ship *s, float rad);
 void Ship_thrust(Ship *s, float a);
 void Ship_draw(Ship *s);
 void Ship_update(Ship *s);
+void Ship_fire(Ship *s);
 
 #endif
