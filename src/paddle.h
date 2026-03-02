@@ -5,6 +5,7 @@
 
 #define PADDLE_WIDTH 16.0f
 #define PADDLE_HEIGHT 64.0f
+#define PADDLE_SPEED 4.0f
 
 extern Paddle *PADDLE_ALL[];
 

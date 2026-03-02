@@ -4,6 +4,8 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <float.h>
+#include <math.h>
 
 #include "raylib.h"
 #include "raymath.h"
