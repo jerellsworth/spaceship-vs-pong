@@ -3,9 +3,9 @@
 FireParticle *_FIRE_PARTICLE_ALL[FIRE_PARTICLE_MAX_PARTICLES];
 const int _FIRE_PARTICLE_COLORS[] = {
     0xEBFF00FF,
-    0xCAA400FF,
-    0x914A00FF,
-    0x2D0000FF
+    0xEBC600FF,
+    0xD36B00FF,
+    0xBE1A00FF
 };
 
 void FireParticle_all_init(void) {

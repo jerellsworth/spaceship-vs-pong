@@ -37,6 +37,8 @@ static uint32_t score = 0;
 Ship *ship = NULL;
 RenderTexture2D bg;
 Shader bg_shader;
+float score_line;
+float v_score_line;
 
 
 //----------------------------------------------------------------------------------
@@ -50,6 +52,7 @@ void InitGameplayScreen(void)
     framesCounter = 0;
     finishScreen = 0;
     score = 0;
+    score_line = -6.0f;
     bg = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
     BeginTextureMode(bg);
         ClearBackground(GetColor(0x0FA0DFFF));
@@ -60,7 +63,7 @@ void InitGameplayScreen(void)
     ship = Ship_init(
         center
     );
-    bg_shader = LoadShader(0, TextFormat("resources/shaders/glsl%i/bloom.fs", GLSL_VERSION));
+    bg_shader = LoadShader(0, TextFormat("src/resources/shaders/glsl%i/bloom.fs", GLSL_VERSION));
 }
 
 // Gameplay Screen Update logic
@@ -94,10 +97,16 @@ void UpdateGameplayScreen(void)
     Paddle_all_update();
     uint32_t score_diff = Bullet_all_update();
     if (!ship->exploded) {
-        score += score_diff;
+        if (score_diff > 0) {
+            score += score_diff;
+            score_line = PLAYFIELD_MIN_Y;
+        }
     }
     Bullet_all_mark_bg(bg);
     FireParticle_all_update();
+    if (score_line > -6.0f) {
+        score_line -= 2.0f;
+    }
     if (endFrame >= 0 && framesCounter >= endFrame) {
         finishScreen = 1;
     }
@@ -106,16 +115,24 @@ void UpdateGameplayScreen(void)
 // Gameplay Screen Draw logic
 void DrawGameplayScreen(void)
 {
-    DrawTextureRec(
-        bg.texture,
-        (Rectangle){ 0, 0, (float)bg.texture.width, (float)-bg.texture.height },
-        (Vector2) { 0, 0 },
-        WHITE
+    BeginShaderMode(bg_shader);
+        DrawTextureRec(
+            bg.texture,
+            (Rectangle){ 0, 0, (float)bg.texture.width, (float)-bg.texture.height },
+            (Vector2) { 0, 0 },
+            WHITE
+            );
+        DrawLineEx(
+            (Vector2){PLAYFIELD_MIN_X, score_line},
+            (Vector2){PLAYFIELD_MAX_X, score_line},
+            6.0f,
+            WHITE
         );
+    EndShaderMode();
+    FireParticle_all_draw();
     Playfield_draw(score);
     Paddle_all_draw();
     Bullet_all_draw();
-    FireParticle_all_draw();
     Ship_draw(ship);
 }
 
@@ -128,6 +145,7 @@ void UnloadGameplayScreen(void)
     Ship_del(ship);
     ship = NULL;
     UnloadRenderTexture(bg);
+    UnloadShader(bg_shader);
 }
 
 // Gameplay Screen should finish?

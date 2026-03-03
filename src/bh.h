@@ -11,6 +11,8 @@
 #include "raylib.h"
 #include "raymath.h"
 
+#define PLATFORM_DESKTOP
+
 #if defined(PLATFORM_DESKTOP)
     #define GLSL_VERSION            330
 #else   // PLATFORM_ANDROID, PLATFORM_WEB

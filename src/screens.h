@@ -37,7 +37,15 @@ typedef enum GameScreen { UNKNOWN = -1, LOGO = 0, TITLE, OPTIONS, GAMEPLAY, ENDI
 extern GameScreen currentScreen;
 extern Font font;
 extern Music music;
-extern Sound fxCoin;
+
+extern Sound fx_ping_1;
+extern Sound fx_ping_2;
+extern Sound fx_ping_3;
+extern Sound fx_ping_4;
+extern Sound fx_ping_5;
+extern Sound fx_score;
+extern Sound fx_shoot;
+extern Sound fx_thrust;
 
 #ifdef __cplusplus
 extern "C" {            // Prevents name mangling of functions
