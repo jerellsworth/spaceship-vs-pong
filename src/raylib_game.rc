@@ -9,13 +9,13 @@ BEGIN
     //BLOCK "080904E4"     // English UK
     BLOCK "040904E4"    // English US
     BEGIN
-      VALUE "CompanyName", "raylib technologies"
-      VALUE "FileDescription", "raylib-game | A great game"
+      VALUE "CompanyName", "Safety Stoat Studios"
+      VALUE "FileDescription", "Spaceship vs Paddles"
       VALUE "FileVersion", "1.0"
-      VALUE "InternalName", "raylib-game"
-      VALUE "LegalCopyright", "(c) 2025 raylib technologies (@raylibtech)"
+      VALUE "InternalName", "spaceship-vs-paddles"
+      VALUE "LegalCopyright", "(c) 2026 Safety Stoat Studios"
       //VALUE "OriginalFilename", "raylib_app.exe"
-      VALUE "ProductName", "raylib-game"
+      VALUE "ProductName", "spaceship-vs-paddles"
       VALUE "ProductVersion", "1.0"
     END
   END

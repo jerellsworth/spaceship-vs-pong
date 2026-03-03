@@ -11,12 +11,10 @@
 #include "raylib.h"
 #include "raymath.h"
 
-#define PLATFORM_DESKTOP
-
-#if defined(PLATFORM_DESKTOP)
-    #define GLSL_VERSION            330
-#else   // PLATFORM_ANDROID, PLATFORM_WEB
+#if defined(PLATFORM_WEB)
     #define GLSL_VERSION            100
+#else 
+    #define GLSL_VERSION            330
 #endif
 
 typedef enum PaddleSide_e PaddleSide;
@@ -24,6 +22,9 @@ typedef struct Bullet_s Bullet;
 typedef struct Ship_s Ship;
 typedef struct Paddle_s Paddle;
 typedef struct FireParticle_s FireParticle;
+
+extern uint32_t score;
+extern Font font;
 
 #include "sounds.h"
 #include "paddle.h"

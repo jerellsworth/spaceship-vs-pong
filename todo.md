@@ -1,2 +1,2 @@
 * balls get faster with time
-* title + results screen
+* webasm version

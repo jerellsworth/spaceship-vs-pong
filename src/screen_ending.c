@@ -25,13 +25,14 @@
 
 #include "raylib.h"
 #include "screens.h"
+#include "bh.h"
 
 //----------------------------------------------------------------------------------
 // Module Variables Definition (local)
 //----------------------------------------------------------------------------------
 static int framesCounter = 0;
 static int finishScreen = 0;
-
+static Vector2 text_size;
 //----------------------------------------------------------------------------------
 // Ending Screen Functions Definition
 //----------------------------------------------------------------------------------
@@ -59,12 +60,12 @@ void UpdateEndingScreen(void)
 // Ending Screen Draw logic
 void DrawEndingScreen(void)
 {
-    // TODO: Draw ENDING screen here!
-    DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLUE);
-
-    Vector2 pos = { 20, 10 };
-    DrawTextEx(font, "ENDING SCREEN", pos, font.baseSize*3.0f, 4, DARKBLUE);
-    DrawText("PRESS ENTER or TAP to RETURN to TITLE SCREEN", 120, 220, 20, DARKBLUE);
+    DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), GetColor(0x0FA0DF08));
+    const char *score_fmt = TextFormat("%d", score);
+    text_size = MeasureTextEx(font, score_fmt, 128.0f, 1.0f);
+    float x = (GetScreenWidth() / 2) - (text_size.x / 2);
+    float y = (GetScreenHeight() / 2) - (text_size.y / 2);
+    DrawTextEx(font, score_fmt, (Vector2){x, y}, 128.0f, 1.0f, BLACK);
 }
 
 // Ending Screen Unload logic

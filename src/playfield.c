@@ -7,9 +7,13 @@ void Playfield_draw(uint32_t score) {
         2.0,
         BLACK
     );
-    char buf[32];
-    snprintf(buf, 32, "%d", score);
-    DrawText(buf, PLAYFIELD_MIN_X, 10, 40, BLACK);
+    const char *score_fmt = TextFormat("%d", score);
+    DrawTextEx(font, score_fmt, (Vector2){ PLAYFIELD_MIN_X, 0.0f }, 80, 1, BLACK);
+
+    const char *copyright = "(c) 2026 Safety Stoat Studios";
+    Vector2 size = MeasureTextEx(font, copyright, 20, 1.0f);
+    DrawTextEx(font, copyright, (Vector2){ PLAYFIELD_MAX_X - size.x, PLAYFIELD_MIN_Y - size.y - 2.0f }, 20, 1.0f, BLACK);
+ 
     DrawLineEx(
         (Vector2){PLAYFIELD_SHIP_MIN_X, PLAYFIELD_MIN_Y},
         (Vector2){PLAYFIELD_SHIP_MIN_X, PLAYFIELD_MAX_Y},

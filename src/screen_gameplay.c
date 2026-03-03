@@ -33,8 +33,8 @@
 static int framesCounter = 0;
 static int endFrame = -1;
 static int finishScreen = 0;
-static uint32_t score = 0;
 static Color bg_fill_color;
+uint32_t score = 0;
 Ship *ship = NULL;
 RenderTexture2D bg;
 Shader bg_shader;
