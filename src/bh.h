@@ -11,6 +11,12 @@
 #include "raylib.h"
 #include "raymath.h"
 
+#if defined(PLATFORM_DESKTOP)
+    #define GLSL_VERSION            330
+#else   // PLATFORM_ANDROID, PLATFORM_WEB
+    #define GLSL_VERSION            100
+#endif
+
 typedef enum PaddleSide_e PaddleSide;
 typedef struct Bullet_s Bullet;
 typedef struct Ship_s Ship;

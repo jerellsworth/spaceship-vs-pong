@@ -72,6 +72,16 @@ void Bullet_all_draw(void) {
     }
 }
 
+void Bullet_all_mark_bg(RenderTexture2D bg) {
+    BeginTextureMode(bg);
+    for (uint32_t i = 0; i < BULLET_MAX_BULLETS; ++i) {
+        Bullet *b = BULLET_ALL[i];
+        if (!b) continue;
+        DrawCircle(b->pos.x, b->pos.y, 4, GetColor(0x5DB3D8FF));
+    }
+    EndTextureMode();
+}
+
 Bullet *Bullet_init(Vector2 pos, Vector2 vel) {
     for (uint32_t i = 0; i < BULLET_MAX_BULLETS; ++i) {
         if (!BULLET_ALL[i]) {

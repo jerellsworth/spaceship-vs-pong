@@ -275,7 +275,7 @@ static void UpdateDrawFrame(void)
     //----------------------------------------------------------------------------------
     BeginDrawing();
 
-        ClearBackground(BLUE);
+        ClearBackground(RAYWHITE);
 
         switch(currentScreen)
         {

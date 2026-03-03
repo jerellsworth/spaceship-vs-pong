@@ -35,6 +35,9 @@ static int endFrame = -1;
 static int finishScreen = 0;
 static uint32_t score = 0;
 Ship *ship = NULL;
+RenderTexture2D bg;
+Shader bg_shader;
+
 
 //----------------------------------------------------------------------------------
 // Gameplay Screen Functions Definition
@@ -47,20 +50,22 @@ void InitGameplayScreen(void)
     framesCounter = 0;
     finishScreen = 0;
     score = 0;
+    bg = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
+    BeginTextureMode(bg);
+        ClearBackground(GetColor(0x0FA0DFFF));
+    EndTextureMode();
     Bullet_all_init();
     Paddle_all_init();
     FireParticle_all_init();
     ship = Ship_init(
         center
     );
+    bg_shader = LoadShader(0, TextFormat("resources/shaders/glsl%i/bloom.fs", GLSL_VERSION));
 }
 
 // Gameplay Screen Update logic
 void UpdateGameplayScreen(void)
 {
-    // TODO: Update GAMEPLAY screen variables here!
-
-    // Press enter or tap to change to ENDING screen
     ++framesCounter;
     if (!ship->exploded) {
         if (IsKeyDown(KEY_A))
@@ -91,6 +96,7 @@ void UpdateGameplayScreen(void)
     if (!ship->exploded) {
         score += score_diff;
     }
+    Bullet_all_mark_bg(bg);
     FireParticle_all_update();
     if (endFrame >= 0 && framesCounter >= endFrame) {
         finishScreen = 1;
@@ -100,6 +106,12 @@ void UpdateGameplayScreen(void)
 // Gameplay Screen Draw logic
 void DrawGameplayScreen(void)
 {
+    DrawTextureRec(
+        bg.texture,
+        (Rectangle){ 0, 0, (float)bg.texture.width, (float)-bg.texture.height },
+        (Vector2) { 0, 0 },
+        WHITE
+        );
     Playfield_draw(score);
     Paddle_all_draw();
     Bullet_all_draw();
@@ -115,6 +127,7 @@ void UnloadGameplayScreen(void)
     Paddle_all_cleanup();
     Ship_del(ship);
     ship = NULL;
+    UnloadRenderTexture(bg);
 }
 
 // Gameplay Screen should finish?
