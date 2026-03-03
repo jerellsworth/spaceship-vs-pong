@@ -53,6 +53,7 @@ void InitGameplayScreen(void)
     Vector2 center = {(PLAYFIELD_MIN_X + PLAYFIELD_MAX_X) / 2, (PLAYFIELD_MIN_Y + PLAYFIELD_MAX_Y) / 2};
     framesCounter = 0;
     finishScreen = 0;
+    endFrame = -1;
     score = 0;
     score_line = -6.0f;
     bg = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
@@ -72,6 +73,7 @@ void InitGameplayScreen(void)
 void UpdateGameplayScreen(void)
 {
     ++framesCounter;
+    UpdateMusicStream(music);
     if (!ship->exploded) {
         if (IsKeyDown(KEY_A))
         {
@@ -128,7 +130,7 @@ void DrawGameplayScreen(void)
             (Vector2){PLAYFIELD_MIN_X, score_line},
             (Vector2){PLAYFIELD_MAX_X, score_line},
             6.0f,
-            WHITE
+            BLACK
         );
     EndShaderMode();
     FireParticle_all_draw();

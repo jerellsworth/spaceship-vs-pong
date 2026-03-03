@@ -75,7 +75,7 @@ int main(void)
 
     // Load global data (assets that must be available in all screens, i.e. font)
     font = LoadFont("src/resources/RacingSansOne-Regular.ttf");
-    //music = LoadMusicStream("resources/ambient.ogg"); // TODO: Load music
+    music = LoadMusicStream("src/resources/gameplay.wav");
     fx_ping_1 = LoadSound("src/resources/ping1.wav");
     fx_ping_2 = LoadSound("src/resources/ping2.wav");
     fx_ping_3 = LoadSound("src/resources/ping3.wav");
@@ -86,18 +86,17 @@ int main(void)
     fx_thrust = LoadSound("src/resources/thrust.wav");
     fx_die = LoadSound("src/resources/die.wav");
 
-    SetMusicVolume(music, 1.0f);
-    PlayMusicStream(music);
+    //SetMusicVolume(music, 1.0f);
 
     // Setup and init first screen
     currentScreen = GAMEPLAY;
     InitGameplayScreen();
+    PlayMusicStream(music);
 
 #if defined(PLATFORM_WEB)
     emscripten_set_main_loop(UpdateDrawFrame, 60, 1);
 #else
     SetTargetFPS(60);       // Set our game to run at 60 frames-per-second
-    //--------------------------------------------------------------------------------------
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
