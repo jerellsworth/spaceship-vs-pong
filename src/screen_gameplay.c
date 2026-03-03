@@ -85,9 +85,6 @@ void UpdateGameplayScreen(void)
         if (IsKeyPressed(KEY_SPACE)) {
             Ship_fire(ship);
         }
-        if (IsKeyPressed(KEY_Q)) {
-            ship->exploded = 1;
-        }
     }
 
     Ship_update(ship);
