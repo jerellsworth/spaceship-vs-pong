@@ -32,9 +32,11 @@ uint32_t Bullet_all_update(void) {
             ) {
                 b->pos.x = PLAYFIELD_MIN_X;
                 b->vel.x = -b->vel.x;
+                Sound_ping();
             } else {
                 Bullet_del(b);
                 ++score_diff;
+                PlaySound(fx_score);
                 continue;
             }
         }
@@ -47,18 +49,22 @@ uint32_t Bullet_all_update(void) {
             ) {
                 b->pos.x = PLAYFIELD_MAX_X;
                 b->vel.x = -b->vel.x;
+                Sound_ping();
             } else {
                 Bullet_del(b);
                 ++score_diff;
+                PlaySound(fx_score);
                 continue;
             }
         }
         if (b->pos.y <= PLAYFIELD_MIN_Y) {
             b->pos.y = PLAYFIELD_MIN_Y;
             b->vel.y = -b->vel.y;
+            Sound_ping();
         } else if (b->pos.y >= PLAYFIELD_MAX_Y) {
             b->pos.y = PLAYFIELD_MAX_Y;
             b->vel.y = -b->vel.y;
+            Sound_ping();
         }
     }
     return score_diff;

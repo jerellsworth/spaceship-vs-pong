@@ -86,6 +86,7 @@ void Ship_update(Ship *s) {
         if (fabsf(b->pos.y - s->center.y) > SHIP_RADIUS) continue;
         float dist = Vector2Distance(s->center, b->pos);
         if (dist <= SHIP_HIT_RADIUS) {
+            PlaySound(fx_die);
             for (float rad = 0; rad < 2 * PI; rad += 2 * PI / 64) {
                 Vector2 vel = (Vector2){cosf(rad), sinf(rad)};
                 FireParticle_init(s->center, vel);
@@ -110,6 +111,7 @@ void Ship_draw(Ship *s) {
 }
 
 void Ship_fire(Ship *s) {
+    PlaySound(fx_shoot);
     Vector2 pos = s->points[0];
     Vector2 vel = _Ship_facing_vector(s, BULLET_SPEED);
     Bullet_init(pos, vel);

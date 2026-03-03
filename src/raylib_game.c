@@ -76,11 +76,11 @@ int main(void)
     // Load global data (assets that must be available in all screens, i.e. font)
     font = LoadFont("src/resources/RacingSansOne-Regular.ttf");
     //music = LoadMusicStream("resources/ambient.ogg"); // TODO: Load music
-    fx_ping_1 = LoadSound("src/resources/ping_1.wav");
-    fx_ping_2 = LoadSound("src/resources/ping_2.wav");
-    fx_ping_3 = LoadSound("src/resources/ping_3.wav");
-    fx_ping_4 = LoadSound("src/resources/ping_4.wav");
-    fx_ping_5 = LoadSound("src/resources/ping_5.wav");
+    fx_ping_1 = LoadSound("src/resources/ping1.wav");
+    fx_ping_2 = LoadSound("src/resources/ping2.wav");
+    fx_ping_3 = LoadSound("src/resources/ping3.wav");
+    fx_ping_4 = LoadSound("src/resources/ping4.wav");
+    fx_ping_5 = LoadSound("src/resources/ping5.wav");
     fx_score = LoadSound("src/resources/score.wav");
     fx_shoot = LoadSound("src/resources/shoot.wav");
     fx_thrust = LoadSound("src/resources/thrust.wav");
