@@ -30,6 +30,9 @@ void Ship_thrust(Ship *s, float a) {
         s->accel = (Vector2){0.0f, 0.0f};
         return;
     }
+    if (!IsSoundPlaying(fx_thrust)) {
+        PlaySound(fx_thrust);
+    }
     s->accel = _Ship_facing_vector(s, a);
     Vector2 dpos = Vector2Subtract(s->points[2], s->points[1]);
     dpos.x /= 16.0f;
@@ -53,16 +56,20 @@ void Ship_update(Ship *s) {
     if (next_center.x <= PLAYFIELD_MIN_X) {
         next_center.x = PLAYFIELD_MIN_X;
         s->vel.x = -s->vel.x;
+        Sound_ping();
     } else if (next_center.x >= PLAYFIELD_MAX_X) {
         next_center.x = PLAYFIELD_MAX_X;
         s->vel.x = -s->vel.x;
+        Sound_ping();
     }
     if (next_center.y <= PLAYFIELD_MIN_Y) {
         next_center.y = PLAYFIELD_MIN_Y;
         s->vel.y = -s->vel.y;
+        Sound_ping();
     } else if (next_center.y >= PLAYFIELD_MAX_Y) {
         next_center.y = PLAYFIELD_MAX_Y;
         s->vel.y = -s->vel.y;
+        Sound_ping();
     }
     Vector2 dpos = Vector2Subtract(next_center, s->center);
     s->center = next_center;

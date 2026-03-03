@@ -25,6 +25,7 @@ typedef struct Ship_s Ship;
 typedef struct Paddle_s Paddle;
 typedef struct FireParticle_s FireParticle;
 
+#include "sounds.h"
 #include "paddle.h"
 #include "playfield.h"
 #include "ship.h"

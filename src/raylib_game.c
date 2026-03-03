@@ -15,6 +15,8 @@
 #include "raylib.h"
 #include "screens.h"    // NOTE: Declares global (extern) variables and screens functions
 
+#include "sounds.h"
+
 #if defined(PLATFORM_WEB)
     #include <emscripten/emscripten.h>
 #endif
@@ -26,7 +28,15 @@
 GameScreen currentScreen = GAMEPLAY;
 Font font = { 0 };
 Music music = { 0 };
-Sound fxCoin = { 0 };
+Sound fx_ping_1 = { 0 };
+Sound fx_ping_2 = { 0 };
+Sound fx_ping_3 = { 0 };
+Sound fx_ping_4 = { 0 };
+Sound fx_ping_5 = { 0 };
+Sound fx_score = { 0 };
+Sound fx_shoot = { 0 };
+Sound fx_thrust = { 0 };
+Sound fx_die = { 0 };
 
 //----------------------------------------------------------------------------------
 // Global Variables Definition (local to this module)
@@ -66,7 +76,15 @@ int main(void)
     // Load global data (assets that must be available in all screens, i.e. font)
     font = LoadFont("src/resources/RacingSansOne-Regular.ttf");
     //music = LoadMusicStream("resources/ambient.ogg"); // TODO: Load music
-    //fxCoin = LoadSound("resources/coin.wav");
+    fx_ping_1 = LoadSound("src/resources/ping_1.wav");
+    fx_ping_2 = LoadSound("src/resources/ping_2.wav");
+    fx_ping_3 = LoadSound("src/resources/ping_3.wav");
+    fx_ping_4 = LoadSound("src/resources/ping_4.wav");
+    fx_ping_5 = LoadSound("src/resources/ping_5.wav");
+    fx_score = LoadSound("src/resources/score.wav");
+    fx_shoot = LoadSound("src/resources/shoot.wav");
+    fx_thrust = LoadSound("src/resources/thrust.wav");
+    fx_die = LoadSound("src/resources/die.wav");
 
     SetMusicVolume(music, 1.0f);
     PlayMusicStream(music);
@@ -104,7 +122,15 @@ int main(void)
     // Unload global data loaded
     UnloadFont(font);
     UnloadMusicStream(music);
-    UnloadSound(fxCoin);
+    UnloadSound(fx_ping_1);
+    UnloadSound(fx_ping_2);
+    UnloadSound(fx_ping_3);
+    UnloadSound(fx_ping_4);
+    UnloadSound(fx_ping_5);
+    UnloadSound(fx_shoot);
+    UnloadSound(fx_thrust);
+    UnloadSound(fx_score);
+    UnloadSound(fx_die);
 
     CloseAudioDevice();     // Close audio context
 

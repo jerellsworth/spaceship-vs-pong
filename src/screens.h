@@ -38,15 +38,6 @@ extern GameScreen currentScreen;
 extern Font font;
 extern Music music;
 
-extern Sound fx_ping_1;
-extern Sound fx_ping_2;
-extern Sound fx_ping_3;
-extern Sound fx_ping_4;
-extern Sound fx_ping_5;
-extern Sound fx_score;
-extern Sound fx_shoot;
-extern Sound fx_thrust;
-
 #ifdef __cplusplus
 extern "C" {            // Prevents name mangling of functions
 #endif
