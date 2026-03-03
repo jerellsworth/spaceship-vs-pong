@@ -53,12 +53,12 @@ void Ship_update(Ship *s) {
         s->vel = Vector2Scale(Vector2Normalize(s->vel), SHIP_TERMINAL_VELOCITY);
     }
     Vector2 next_center = Vector2Add(s->center, s->vel);
-    if (next_center.x <= PLAYFIELD_MIN_X) {
-        next_center.x = PLAYFIELD_MIN_X;
+    if (next_center.x <= PLAYFIELD_SHIP_MIN_X) {
+        next_center.x = PLAYFIELD_SHIP_MIN_X;
         s->vel.x = -s->vel.x;
         Sound_ping();
-    } else if (next_center.x >= PLAYFIELD_MAX_X) {
-        next_center.x = PLAYFIELD_MAX_X;
+    } else if (next_center.x >= PLAYFIELD_SHIP_MAX_X) {
+        next_center.x = PLAYFIELD_SHIP_MAX_X;
         s->vel.x = -s->vel.x;
         Sound_ping();
     }
