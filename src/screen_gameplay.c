@@ -34,6 +34,7 @@ static int framesCounter = 0;
 static int endFrame = -1;
 static int finishScreen = 0;
 static uint32_t score = 0;
+static Color bg_fill_color;
 Ship *ship = NULL;
 RenderTexture2D bg;
 Shader bg_shader;
@@ -48,6 +49,7 @@ float v_score_line;
 // Gameplay Screen Initialization logic
 void InitGameplayScreen(void)
 {
+    bg_fill_color = GetColor(0x0FA0DF08);
     Vector2 center = {(PLAYFIELD_MIN_X + PLAYFIELD_MAX_X) / 2, (PLAYFIELD_MIN_Y + PLAYFIELD_MAX_Y) / 2};
     framesCounter = 0;
     finishScreen = 0;
@@ -55,7 +57,7 @@ void InitGameplayScreen(void)
     score_line = -6.0f;
     bg = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
     BeginTextureMode(bg);
-        ClearBackground(GetColor(0x0FA0DFFF));
+        ClearBackground(bg_fill_color);
     EndTextureMode();
     Bullet_all_init();
     Paddle_all_init();
@@ -89,7 +91,7 @@ void UpdateGameplayScreen(void)
 
     Ship_update(ship);
     if (ship->exploded && endFrame < 0) {
-        endFrame = framesCounter + 120;
+        endFrame = framesCounter + 60;
     }
     Paddle_all_update();
     uint32_t score_diff = Bullet_all_update();
@@ -99,6 +101,9 @@ void UpdateGameplayScreen(void)
             score_line = PLAYFIELD_MIN_Y;
         }
     }
+    BeginTextureMode(bg);
+        DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), bg_fill_color);
+    EndTextureMode();
     Bullet_all_mark_bg(bg);
     FireParticle_all_update();
     if (score_line > -6.0f) {
