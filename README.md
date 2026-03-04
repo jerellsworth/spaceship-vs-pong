@@ -57,6 +57,16 @@ cmake --build build
 
 - cmake will automatically download a current release of raylib but if you want to use your local version you can pass `-DFETCHCONTENT_SOURCE_DIR_RAYLIB=<dir_with_raylib>` 
 
+## Emscripten
+
+```
+emcmake cmake -DPLATFORM=Web -S . -B build
+cd build
+make
+cd raylib-game-template
+python3 -m http.server 8080
+```
+
 ## $(Game Title)
 
 ![$(Game Title)](screenshots/screenshot000.png "$(Game Title)")
