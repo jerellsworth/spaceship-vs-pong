@@ -1,2 +1,3 @@
 * balls get faster with time
 * webasm version
+* there needs to be something persuing you. A circle UFO, reflects balls like a pinball bumper
