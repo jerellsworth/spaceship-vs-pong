@@ -13,8 +13,10 @@
 
 #if defined(PLATFORM_WEB)
     #define GLSL_VERSION            100
+    #define RESOURCE_DIR "resources/"
 #else 
     #define GLSL_VERSION            330
+    #define RESOURCE_DIR "src/resources/"
 #endif
 
 typedef enum PaddleSide_e PaddleSide;

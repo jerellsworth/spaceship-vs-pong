@@ -66,7 +66,7 @@ void InitGameplayScreen(void)
     ship = Ship_init(
         center
     );
-    bg_shader = LoadShader(0, TextFormat("resources/shaders/glsl%i/bloom.fs", GLSL_VERSION));
+    bg_shader = LoadShader(0, TextFormat(RESOURCE_DIR "shaders/glsl%i/bloom.fs", GLSL_VERSION));
 }
 
 // Gameplay Screen Update logic

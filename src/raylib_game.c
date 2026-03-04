@@ -74,17 +74,17 @@ int main(void)
     InitAudioDevice();      // Initialize audio device
 
     // Load global data (assets that must be available in all screens, i.e. font)
-    font = LoadFont("resources/RacingSansOne-Regular.ttf");
-    music = LoadMusicStream("resources/gameplay.wav");
-    fx_ping_1 = LoadSound("resources/ping1.wav");
-    fx_ping_2 = LoadSound("resources/ping2.wav");
-    fx_ping_3 = LoadSound("resources/ping3.wav");
-    fx_ping_4 = LoadSound("resources/ping4.wav");
-    fx_ping_5 = LoadSound("resources/ping5.wav");
-    fx_score = LoadSound("resources/score.wav");
-    fx_shoot = LoadSound("resources/shoot.wav");
-    fx_thrust = LoadSound("resources/thrust.wav");
-    fx_die = LoadSound("resources/die.wav");
+    font = LoadFont(RESOURCE_DIR "RacingSansOne-Regular.ttf");
+    music = LoadMusicStream(RESOURCE_DIR "gameplay.wav");
+    fx_ping_1 = LoadSound(RESOURCE_DIR "ping1.wav");
+    fx_ping_2 = LoadSound(RESOURCE_DIR "ping2.wav");
+    fx_ping_3 = LoadSound(RESOURCE_DIR "ping3.wav");
+    fx_ping_4 = LoadSound(RESOURCE_DIR "ping4.wav");
+    fx_ping_5 = LoadSound(RESOURCE_DIR "ping5.wav");
+    fx_score = LoadSound(RESOURCE_DIR "score.wav");
+    fx_shoot = LoadSound(RESOURCE_DIR "shoot.wav");
+    fx_thrust = LoadSound(RESOURCE_DIR "thrust.wav");
+    fx_die = LoadSound(RESOURCE_DIR "die.wav");
 
     //SetMusicVolume(music, 1.0f);
 
