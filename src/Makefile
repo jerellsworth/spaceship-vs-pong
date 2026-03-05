@@ -41,7 +41,8 @@ PROJECT_SOURCE_FILES  ?= \
     screen_ending.c \
     screen_gameplay.c \
     ship.c \
-    sounds.c
+    sounds.c \
+    ufo.c
 
 # raylib library variables
 RAYLIB_SRC_PATH       ?= ../../raylib/src
