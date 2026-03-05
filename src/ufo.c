@@ -12,7 +12,13 @@ void UFO_del(UFO *u) {
 }
 
 void UFO_update(UFO *u, Ship *s) {
-    Vector2 dpos = Vector2Subtract(s->center, u->pos);
+    if (s->exploded) return;
+    float dist = Vector2Distance(s->center, u->pos);
+    if (dist < SHIP_HIT_RADIUS + UFO_RADIUS_INNER) {
+        Ship_explode(s);
+        return;
+    }
+    Vector2 dpos = Vector2Subtract(s->center, u->pos); 
     Vector2 vel = Vector2Scale(Vector2Normalize(dpos), u->speed);
     u->pos = Vector2Add(u->pos, vel);
     u->speed += UFO_SPEED_INC;

@@ -15,7 +15,7 @@ struct UFO_s {
 
 UFO *UFO_init(Vector2 pos);
 void UFO_del(UFO *u);
-void UFO_update(UFO *u, Ship *s);
+void UFO_update(UFO *u, Ship *d);
 void UFO_draw(UFO *u);
 
 #endif

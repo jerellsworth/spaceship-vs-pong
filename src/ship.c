@@ -44,6 +44,17 @@ void Ship_thrust(Ship *s, float a) {
     }
 }
 
+void Ship_explode(Ship *s) {
+    PlaySound(fx_die);
+    for (float rad = 0; rad < 2 * PI; rad += 2 * PI / 64) {
+        Vector2 vel = (Vector2){cosf(rad), sinf(rad)};
+        FireParticle_init(s->center, vel);
+        vel = (Vector2){vel.x / 2, vel.y / 2};
+    }
+    s->exploded = 1;        
+    return;
+}
+
 void Ship_update(Ship *s) {
     if (!s) return;
     if (s->exploded) return;
@@ -86,13 +97,7 @@ void Ship_update(Ship *s) {
         if (fabsf(b->pos.y - s->center.y) > SHIP_RADIUS) continue;
         float dist = Vector2Distance(s->center, b->pos);
         if (dist <= SHIP_HIT_RADIUS) {
-            PlaySound(fx_die);
-            for (float rad = 0; rad < 2 * PI; rad += 2 * PI / 64) {
-                Vector2 vel = (Vector2){cosf(rad), sinf(rad)};
-                FireParticle_init(s->center, vel);
-                vel = (Vector2){vel.x / 2, vel.y / 2};
-            }
-            s->exploded = 1;        
+            Ship_explode(s);
             return;
         }
     }

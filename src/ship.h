@@ -24,5 +24,6 @@ void Ship_thrust(Ship *s, float a);
 void Ship_draw(Ship *s);
 void Ship_update(Ship *s);
 void Ship_fire(Ship *s);
+void Ship_explode(Ship *s);
 
 #endif
