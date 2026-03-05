@@ -52,3 +52,5 @@ visit localhost:8080 t play
 This game sources are licensed under an unmodified zlib/libpng license, which is an OSI-certified, BSD-like license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
 
 Copyright Zachary Rubenstein 2026
+
+See attribution.md for licenses pertaining to certain assets.
