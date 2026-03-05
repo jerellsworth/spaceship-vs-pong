@@ -92,8 +92,8 @@ void UpdateGameplayScreen(void)
             Ship_fire(ship);
         }
     }
-    UFO_update(ufo);
     Ship_update(ship);
+    UFO_update(ufo, ship);
     if (ship->exploded && endFrame < 0) {
         endFrame = framesCounter + 60;
     }
