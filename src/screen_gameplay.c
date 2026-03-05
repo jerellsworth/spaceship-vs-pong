@@ -36,6 +36,7 @@ static int finishScreen = 0;
 static Color bg_fill_color;
 uint32_t score = 0;
 Ship *ship = NULL;
+UFO *ufo = NULL;
 RenderTexture2D bg;
 Shader bg_shader;
 float score_line;
@@ -66,6 +67,7 @@ void InitGameplayScreen(void)
     ship = Ship_init(
         center
     );
+    ufo = UFO_init((Vector2){GetScreenWidth() / 2, UFO_RADIUS_OUTER}); 
     bg_shader = LoadShader(0, TextFormat(RESOURCE_DIR "shaders/glsl%i/bloom.fs", GLSL_VERSION));
 }
 
@@ -90,7 +92,7 @@ void UpdateGameplayScreen(void)
             Ship_fire(ship);
         }
     }
-
+    UFO_update(ufo);
     Ship_update(ship);
     if (ship->exploded && endFrame < 0) {
         endFrame = framesCounter + 60;
@@ -138,6 +140,7 @@ void DrawGameplayScreen(void)
     Paddle_all_draw();
     Bullet_all_draw();
     Ship_draw(ship);
+    UFO_draw(ufo);
 }
 
 // Gameplay Screen Unload logic
@@ -147,7 +150,9 @@ void UnloadGameplayScreen(void)
     FireParticle_all_cleanup();
     Paddle_all_cleanup();
     Ship_del(ship);
+    UFO_del(ufo);
     ship = NULL;
+    ufo = NULL;
     UnloadRenderTexture(bg);
     UnloadShader(bg_shader);
 }

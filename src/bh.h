@@ -24,6 +24,7 @@ typedef struct Bullet_s Bullet;
 typedef struct Ship_s Ship;
 typedef struct Paddle_s Paddle;
 typedef struct FireParticle_s FireParticle;
+typedef struct UFO_s UFO;
 
 extern uint32_t score;
 extern Font font;
@@ -34,5 +35,6 @@ extern Font font;
 #include "ship.h"
 #include "bullet.h"
 #include "fire_particle.h"
+#include "ufo.h"
 
 #endif
