@@ -73,6 +73,7 @@ uint32_t Bullet_all_update(UFO *u) {
             float dot = Vector2DotProduct(b->vel, normal);
             b->vel = Vector2Subtract(b->vel, Vector2Scale(normal, 2*dot));
             b->pos = Vector2Add(b->pos, Vector2Scale(normal, 2*BULLET_SPEED));
+            PlaySound(fx_ufo_hit);
         }
     }
     return score_diff;

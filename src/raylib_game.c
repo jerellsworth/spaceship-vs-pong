@@ -37,6 +37,7 @@ Sound fx_score = { 0 };
 Sound fx_shoot = { 0 };
 Sound fx_thrust = { 0 };
 Sound fx_die = { 0 };
+Sound fx_ufo_hit = { 0 };
 
 //----------------------------------------------------------------------------------
 // Global Variables Definition (local to this module)
@@ -85,6 +86,7 @@ int main(void)
     fx_shoot = LoadSound(RESOURCE_DIR "shoot.wav");
     fx_thrust = LoadSound(RESOURCE_DIR "thrust.wav");
     fx_die = LoadSound(RESOURCE_DIR "die.wav");
+    fx_ufo_hit = LoadSound(RESOURCE_DIR "ufo_hit.wav");
 
     //SetMusicVolume(music, 1.0f);
 
@@ -127,6 +129,7 @@ int main(void)
     UnloadSound(fx_thrust);
     UnloadSound(fx_score);
     UnloadSound(fx_die);
+    UnloadSound(fx_ufo_hit);
 
     CloseAudioDevice();     // Close audio context
 

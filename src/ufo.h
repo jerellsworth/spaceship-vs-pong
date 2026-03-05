@@ -5,7 +5,7 @@
 
 #define UFO_RADIUS_INNER 8.0f
 #define UFO_RADIUS_OUTER 16.0f
-#define UFO_START_SPEED 1.0f
+#define UFO_START_SPEED 0.5f
 #define UFO_SPEED_INC 0.0001f
 
 struct UFO_s {

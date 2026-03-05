@@ -12,6 +12,7 @@ extern Sound fx_score;
 extern Sound fx_shoot;
 extern Sound fx_thrust;
 extern Sound fx_die;
+extern Sound fx_ufo_hit;
 
 void Sound_ping(void);
 
