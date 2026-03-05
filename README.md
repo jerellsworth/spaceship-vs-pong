@@ -1,6 +1,6 @@
 # Spaceship Vs Paddles
 
-A short, arcade-style game. The goal is to score on the paddles as many times as possible by shooting balls around them. Careful, because the balls can also bounce back and explode you. Also there's a scary doughnut that's chasing you for some reason.
+A short, arcade-style game by Safety Stoat Studios. The goal is to score on the paddles as many times as possible by shooting balls around them. Careful, because the balls can also bounce back and explode you. Also there's a scary doughnut that's chasing you for some reason.
 
 Controls:
 
