@@ -12,6 +12,8 @@ Controls:
 
 **SPACE**: fire
 
+Project page: https://safetystoatstudios.itch.io/spaceship-vs-paddles
+
 ## Building
 
 ### Native
