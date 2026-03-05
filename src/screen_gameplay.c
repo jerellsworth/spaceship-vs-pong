@@ -98,7 +98,7 @@ void UpdateGameplayScreen(void)
         endFrame = framesCounter + 60;
     }
     Paddle_all_update();
-    uint32_t score_diff = Bullet_all_update();
+    uint32_t score_diff = Bullet_all_update(ufo);
     if (!ship->exploded) {
         if (score_diff > 0) {
             score += score_diff;

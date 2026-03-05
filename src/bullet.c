@@ -16,7 +16,7 @@ void Bullet_all_cleanup(void) {
     }
 }
 
-uint32_t Bullet_all_update(void) {
+uint32_t Bullet_all_update(UFO *u) {
     uint32_t score_diff = 0;
     for (uint32_t i = 0; i < BULLET_MAX_BULLETS; ++i) {
         Bullet *b = BULLET_ALL[i];
