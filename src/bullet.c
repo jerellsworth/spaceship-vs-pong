@@ -66,6 +66,14 @@ uint32_t Bullet_all_update(UFO *u) {
             b->vel.y = -b->vel.y;
             Sound_ping();
         }
+        float ufo_dist = Vector2Distance(b->pos, u->pos);
+        if (ufo_dist <= UFO_RADIUS_OUTER) {
+            Vector2 dpos = Vector2Subtract(b->pos, u->pos);
+            Vector2 normal = Vector2Normalize(dpos);
+            float dot = Vector2DotProduct(b->vel, normal);
+            b->vel = Vector2Subtract(b->vel, Vector2Scale(normal, 2*dot));
+            b->pos = Vector2Add(b->pos, Vector2Scale(normal, 2*BULLET_SPEED));
+        }
     }
     return score_diff;
 }
