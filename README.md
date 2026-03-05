@@ -5,8 +5,11 @@ A short, arcade-style game by Safety Stoat Studios. The goal is to score on the 
 Controls:
 
 **W**: thrust
+
 **A**: rotate left
+
 **D**: rotate right
+
 **SPACE**: fire
 
 ## Building
